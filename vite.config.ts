@@ -1,7 +1,18 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import path from "path";
 
-// https://vitejs.dev/config/
+const { resolve } = path;
+
 export default defineConfig({
-  plugins: [react()],
+	plugins: [react()],
+	resolve: {
+		alias: {
+			"pages": resolve(__dirname, "./src/pages"),
+			"widgets": resolve(__dirname, "./src/widgets"),
+			"shared": resolve(__dirname, "./src/shared"),
+			"entities": resolve(__dirname, "./src/entities"),
+			"features": resolve(__dirname, "./src/features"),
+		}
+	}
 })
