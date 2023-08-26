@@ -1,16 +1,19 @@
 import css from "./Product.module.css";
 
 import { Icon } from "shared/ui";
-import { Headphone } from "entities/product";
+import { type Headphone } from "entities/product/model/types";
 
 interface ProductProps {
 	item: Headphone;
+	bottomSlot?: React.ReactNode;
 }
 
-export const Product: React.FC<ProductProps> = ({ item }) => {
+export const Product: React.FC<ProductProps> = ({ item, bottomSlot }) => {
 	return (
 		<div className={css.product}>
-			<img src={item.img} alt="img" />
+			<div className={css.imgBlock}>
+				<img src={item.img} alt="img" />
+			</div>
 			<div className={css.info}>
 				<div className={css.top}>
 					<h4 className={css.name}>{item.title}</h4>
@@ -21,7 +24,7 @@ export const Product: React.FC<ProductProps> = ({ item }) => {
 						<Icon type="star" />
 						<p className={css.rate}>{item.rate}</p>
 					</div>
-					<button>Купить</button>
+					{bottomSlot && bottomSlot}
 				</div>
 			</div>
 		</div>

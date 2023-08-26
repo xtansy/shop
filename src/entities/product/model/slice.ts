@@ -1,20 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 import { getHeadphonesAsync } from "./asyncThunks";
-
-export interface Headphone {
-	_id: string;
-	img: string;
-	title: string;
-	price: number;
-	rate: number;
-}
-
-interface HeadphoneModel {
-	headphones: Headphone[];
-	isLoading: boolean;
-	errorMessage: null | string;
-}
+import { Headphone, HeadphoneModel } from "./types";
 
 const initialState: HeadphoneModel = {
 	headphones: [],

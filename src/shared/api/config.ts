@@ -4,6 +4,12 @@ interface ConfigAPI {
 		headphones: {
 			index: string;
 		};
+		user: {
+			refresh: string;
+			register: string;
+			login: string;
+			logout: string;
+		};
 	};
 }
 
@@ -12,6 +18,12 @@ export const config: ConfigAPI = {
 	paths: {
 		headphones: {
 			index: "/headphones/index",
+		},
+		user: {
+			register: "/user/register",
+			login: "/user/login",
+			logout: "/user/logout",
+			refresh: "/user/refresh",
 		},
 	},
 };

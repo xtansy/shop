@@ -1,16 +1,22 @@
 import css from "./Button.module.css";
 
-import { ComponentProps, type ReactNode } from "react";
+import { ComponentProps } from "react";
+import cn from "classnames";
 
 interface ButtonProps extends ComponentProps<"button"> {
-	variant: "text" | "blackWhite";
-	children: ReactNode;
+	variant?: "text" | "blackWhite";
 }
 
 export const Button: React.FC<ButtonProps> = ({
 	variant = "text",
 	children,
+	className,
 	...props
 }) => {
-	return <button {...props}>{children}</button>;
+	const clazz = cn(css.button, css[`button_${variant}`], className);
+	return (
+		<button {...props} className={clazz}>
+			{children}
+		</button>
+	);
 };

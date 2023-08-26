@@ -4,12 +4,16 @@ import { useEffect } from "react";
 
 import { getHeadphonesAsync } from "entities/product";
 import { Catalog } from "widgets/catalog";
-import { useHeadphonesSelector } from "entities/product";
+import {
+	wiredHeadphonesSelector,
+	wirelessHeadphonesSelector,
+} from "entities/product";
 import { useAppSelector, useAppDispatch } from "shared/model";
 
 export const MainPage = () => {
 	const dispatch = useAppDispatch();
-	const headphones = useAppSelector(useHeadphonesSelector);
+	const wiredHeadphones = useAppSelector(wiredHeadphonesSelector);
+	const wirelessHeadphones = useAppSelector(wirelessHeadphonesSelector);
 
 	useEffect(() => {
 		dispatch(getHeadphonesAsync());
@@ -17,7 +21,8 @@ export const MainPage = () => {
 
 	return (
 		<div className={css.main}>
-			<Catalog title="Наушники" items={headphones} />
+			<Catalog title="Наушники" items={wiredHeadphones} />
+			<Catalog title="Беспроводные наушники" items={wirelessHeadphones} />
 		</div>
 	);
 };

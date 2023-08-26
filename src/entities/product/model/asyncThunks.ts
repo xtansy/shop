@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import { Headphone } from "./slice";
+import { type Headphone } from "./types";
 import { getHeadphones } from "shared/api";
 
 export const getHeadphonesAsync = createAsyncThunk<Headphone[]>(

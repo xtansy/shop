@@ -4,6 +4,8 @@
 	--golden-text-color: #ffa542;
 	--background-color: #eaeaea;
 	--alternate-background-color: #ffffff;
+	--button-background-color: #101010;
+	--white-color: #ffffff;
 }
 
 html[data-theme="light"] {

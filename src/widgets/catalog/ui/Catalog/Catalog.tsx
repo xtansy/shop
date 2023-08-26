@@ -1,5 +1,6 @@
 import css from "./Catalog.module.css";
 
+import { AddToCartButton } from "features/addToCart";
 import { Headphone, Product } from "entities/product";
 
 interface CatalogProps {
@@ -13,7 +14,11 @@ export const Catalog: React.FC<CatalogProps> = ({ title, items }) => {
 			<h2 className={css.title}>{title}</h2>
 			<div className={css.content}>
 				{items.map((item) => (
-					<Product item={item} />
+					<Product
+						key={item._id}
+						item={item}
+						bottomSlot={<AddToCartButton item={item} />}
+					/>
 				))}
 			</div>
 		</div>

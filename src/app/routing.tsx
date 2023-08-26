@@ -1,6 +1,10 @@
 import { Routes, Route } from "react-router-dom";
-import { MainPage } from "pages/main";
+
 import { Layout } from "shared/ui/";
+
+import { MainPage } from "pages/main";
+import { CartPage } from "pages/cart";
+
 import { Header } from "widgets/header";
 import { Footer } from "widgets/footer";
 import { ProfileCard } from "widgets/profile-card";
@@ -17,6 +21,7 @@ export const Routing = () => {
 				}
 			>
 				<Route path="/main" element={<MainPage />} />
+				<Route path="/cart" element={<CartPage />} />
 			</Route>
 		</Routes>
 	);
