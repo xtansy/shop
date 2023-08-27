@@ -15,13 +15,10 @@ export const Card: React.FC<CardProps> = ({ item, actionSlot, bottomSlot }) => {
 				<img className={css.img} src={item.img} alt="cardimg" />
 				<div className={css.contentText}>
 					<div className={css.title}>{item.title}</div>
-					<div className={css.price}>{item.price}</div>
+					<div className={css.price}>{item.price} ₽</div>
 				</div>
 			</div>
-			<div className={css.bottom}>
-				{bottomSlot && bottomSlot}
-				<div className={css.bottomPrice}>{item.price}</div>
-			</div>
+			<div className={css.bottom}>{bottomSlot && bottomSlot}</div>
 			{actionSlot && <div className={css.actions}>{actionSlot}</div>}
 		</div>
 	);

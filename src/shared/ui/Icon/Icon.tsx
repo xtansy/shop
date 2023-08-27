@@ -1,14 +1,16 @@
 import css from "./Icon.module.css";
 
-export type IconType = "like" | "cart" | "star";
+export type IconType = "like" | "cart" | "star" | "trash";
 
 interface IconProps {
 	type: IconType;
+	onClick: () => void;
 }
 
-export const Icon: React.FC<IconProps> = ({ type }) => {
+export const Icon: React.FC<IconProps> = ({ type, onClick }) => {
 	return (
 		<div
+			onClick={onClick}
 			style={{ backgroundImage: `url("/svg/${type}.svg")` }}
 			className={css.icon}
 		></div>

@@ -1,7 +1,12 @@
 import css from "./Catalog.module.css";
 
-import { AddToCartButton } from "features/addToCart";
+import { useAppSelector } from "shared/model";
+
 import { Headphone, Product } from "entities/product";
+import { ProductInCartCounter } from "features/productCounter";
+import { cartItemsSelector } from "entities/cart";
+
+import { AddToCartButton } from "features/addToCart";
 
 interface CatalogProps {
 	title: string;
@@ -9,6 +14,18 @@ interface CatalogProps {
 }
 
 export const Catalog: React.FC<CatalogProps> = ({ title, items }) => {
+	const cartItems = useAppSelector(cartItemsSelector);
+
+	const createBottomSlot = (currentProduct: Headphone) => {
+		const existItem = cartItems.find(
+			(item) => item._id === currentProduct._id
+		);
+		if (existItem) {
+			return <ProductInCartCounter product={existItem} />;
+		}
+		return <AddToCartButton item={currentProduct} />;
+	};
+
 	return (
 		<div className={css.catalog}>
 			<h2 className={css.title}>{title}</h2>
@@ -17,7 +34,7 @@ export const Catalog: React.FC<CatalogProps> = ({ title, items }) => {
 					<Product
 						key={item._id}
 						item={item}
-						bottomSlot={<AddToCartButton item={item} />}
+						bottomSlot={createBottomSlot(item)}
 					/>
 				))}
 			</div>
