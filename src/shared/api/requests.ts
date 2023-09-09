@@ -1,6 +1,6 @@
-import { api, Response } from "./instance";
+import { api } from "./instance";
 import { config } from "./config";
-import { HeadphoneDto, RefreshResponse } from "./types";
+import { HeadphoneDto, RefreshResponse, Response } from "./types";
 
 const { paths } = config;
 

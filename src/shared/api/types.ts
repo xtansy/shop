@@ -1,3 +1,8 @@
+export interface Response<T> {
+	message: string;
+	data: T;
+}
+
 type HeadphoneType = "wired" | "wireless";
 export interface HeadphoneDto {
 	_id: string;

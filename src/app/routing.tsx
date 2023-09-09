@@ -4,10 +4,11 @@ import { Layout } from "shared/ui/";
 
 import { MainPage } from "pages/main";
 import { CartPage } from "pages/cart";
+import { LoginPage } from "pages/login";
 
 import { Header } from "widgets/header";
 import { Footer } from "widgets/footer";
-import { ProfileCard } from "widgets/profile-card";
+import { HeaderMenu } from "widgets/headerMenu";
 
 export const Routing = () => {
 	return (
@@ -15,13 +16,14 @@ export const Routing = () => {
 			<Route
 				element={
 					<Layout
-						header={<Header rightSlot={<ProfileCard />} />}
+						header={<Header rightSlot={<HeaderMenu />} />}
 						footer={<Footer />}
 					/>
 				}
 			>
 				<Route path="/main" element={<MainPage />} />
 				<Route path="/cart" element={<CartPage />} />
+				<Route path="/login" element={<LoginPage />} />
 			</Route>
 		</Routes>
 	);

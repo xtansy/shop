@@ -4,7 +4,7 @@ export type IconType = "like" | "cart" | "star" | "trash";
 
 interface IconProps {
 	type: IconType;
-	onClick: () => void;
+	onClick?: () => void;
 }
 
 export const Icon: React.FC<IconProps> = ({ type, onClick }) => {

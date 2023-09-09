@@ -3,11 +3,6 @@ import { refreshTokens } from ".";
 
 import { config } from "./config";
 
-export interface Response<T> {
-	message: string;
-	data: T;
-}
-
 export const api = axios.create({
 	// withCredentials: true,
 	baseURL: config.baseUrl,
