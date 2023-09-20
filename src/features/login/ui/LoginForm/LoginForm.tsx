@@ -56,7 +56,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onComplete }) => {
 				<input
 					{...register("password")}
 					id="password"
-					type="text"
+					type="password"
 					className={css.input}
 				/>
 				<p className={css.error}>{errors.password?.message}</p>

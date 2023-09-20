@@ -25,6 +25,7 @@ export const userModel = createSlice({
 				localStorage.setItem("accessToken", accessToken);
 				state.isLoading = false;
 				state.user = user;
+				state.isAuth = true;
 			})
 
 			.addCase(logoutAsync.pending, (state) => {
@@ -33,12 +34,11 @@ export const userModel = createSlice({
 			.addCase(logoutAsync.rejected, (state) => {
 				state.isLoading = false;
 			})
-			.addCase(logoutAsync.fulfilled, (state, { payload }) => {
+			.addCase(logoutAsync.fulfilled, (state) => {
 				state.isAuth = false;
 				state.isLoading = false;
 				state.user = undefined;
 				localStorage.removeItem("accessToken");
-				console.log(payload);
 			});
 	},
 });

@@ -3,16 +3,8 @@ export interface User {
 	login: string;
 }
 
-export type UserModel =
-	| {
-			isAuth: true;
-			isLoading: boolean;
-			user: User;
-			// eslint-disable-next-line no-mixed-spaces-and-tabs
-	  }
-	| {
-			isAuth: false;
-			user?: User;
-			isLoading: boolean;
-			// eslint-disable-next-line no-mixed-spaces-and-tabs
-	  };
+export type UserModel = {
+	isAuth: boolean;
+	isLoading: boolean;
+	user?: User;
+};

@@ -11,6 +11,10 @@ interface ConfigAPI {
 			logout: string;
 		};
 	};
+	user: {
+		login: string;
+		password: string;
+	};
 }
 
 export const config: ConfigAPI = {
@@ -25,5 +29,9 @@ export const config: ConfigAPI = {
 			logout: "/user/logout",
 			refresh: "/user/refresh",
 		},
+	},
+	user: {
+		login: "userTest",
+		password: "pass123",
 	},
 };

@@ -5,6 +5,7 @@ import { useAppSelector } from "shared/model";
 import { Headphone, Product } from "entities/product";
 import { ProductInCartCounter } from "features/productCounter";
 import { cartItemsSelector } from "entities/cart";
+import { isAuthSelector } from "entities/user";
 
 import { AddToCartButton } from "features/addToCart";
 
@@ -14,6 +15,7 @@ interface CatalogProps {
 }
 
 export const Catalog: React.FC<CatalogProps> = ({ title, items }) => {
+	const isAuth = useAppSelector(isAuthSelector);
 	const cartItems = useAppSelector(cartItemsSelector);
 
 	const createBottomSlot = (currentProduct: Headphone) => {
@@ -34,7 +36,7 @@ export const Catalog: React.FC<CatalogProps> = ({ title, items }) => {
 					<Product
 						key={item._id}
 						item={item}
-						bottomSlot={createBottomSlot(item)}
+						bottomSlot={isAuth ? createBottomSlot(item) : undefined}
 					/>
 				))}
 			</div>
