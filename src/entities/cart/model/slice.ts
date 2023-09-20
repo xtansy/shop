@@ -11,6 +11,9 @@ export const cartModel = createSlice({
 	name: "cart",
 	initialState,
 	reducers: {
+		clearCartData: (state) => {
+			state.items = [];
+		},
 		addItem: (state, { payload }: PayloadAction<Headphone>) => {
 			const existItem = state.items.find(
 				(item) => item._id === payload._id
@@ -35,4 +38,5 @@ export const cartModel = createSlice({
 	},
 });
 
-export const { addItem, minusItem, removeItem } = cartModel.actions;
+export const { addItem, minusItem, removeItem, clearCartData } =
+	cartModel.actions;

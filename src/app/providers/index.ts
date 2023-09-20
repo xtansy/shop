@@ -1,5 +1,7 @@
 import { withRouter } from "./withRouter";
-import { withRedux } from "./withRedux";
+import { withStore } from "./withStore";
+import { withPersistedStore } from "./withPersistedStore";
+
 import { compose } from "./compose";
 
-export const withProvider = compose(withRouter, withRedux);
+export const withProvider = compose(withRouter, withStore, withPersistedStore);

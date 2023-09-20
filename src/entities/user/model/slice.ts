@@ -11,7 +11,13 @@ const initialState: UserModel = {
 export const userModel = createSlice({
 	name: "user",
 	initialState,
-	reducers: {},
+	reducers: {
+		clearUserData: (state) => {
+			state.isAuth = false;
+			state.isLoading = false;
+			state.user = undefined;
+		},
+	},
 	extraReducers: (builder) => {
 		builder
 			.addCase(loginAsync.pending, (state) => {
@@ -42,3 +48,5 @@ export const userModel = createSlice({
 			});
 	},
 });
+
+export const { clearUserData } = userModel.actions;
