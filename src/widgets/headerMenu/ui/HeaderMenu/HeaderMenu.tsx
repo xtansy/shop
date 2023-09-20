@@ -2,12 +2,14 @@ import css from "./HeaderMenu.module.css";
 
 import { Link } from "react-router-dom";
 
-import { useAppSelector } from "shared/model";
-import { isAuthSelector } from "entities/user";
+import { useAppSelector, useAppDispatch } from "shared/model";
+import { isAuthSelector, userSelector, logoutAsync } from "entities/user";
 import { Icon } from "shared/ui";
 
 export const HeaderMenu = () => {
 	const isAuth = useAppSelector(isAuthSelector);
+	const user = useAppSelector(userSelector);
+	const dispatch = useAppDispatch();
 
 	if (!isAuth) {
 		return (
@@ -17,9 +19,14 @@ export const HeaderMenu = () => {
 		);
 	}
 
+	const onClickLogout = () => {
+		dispatch(logoutAsync());
+	};
+
 	return (
 		<div className={css.card}>
-			<h2>LOGOUT</h2>
+			<h2>Hey, {user?.login}</h2>
+			<h2 onClick={onClickLogout}>logout</h2>
 			<Link to="/main">
 				<Icon type="like" />
 			</Link>

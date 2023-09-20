@@ -1,12 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import { type UserModel } from "./types";
-import { loginAsync } from "./asyncThunk";
+import { loginAsync, logoutAsync } from "./asyncThunk";
 
 const initialState: UserModel = {
 	isAuth: false,
 	isLoading: false,
-	errorMessage: null,
 };
 
 export const userModel = createSlice({
@@ -20,13 +19,26 @@ export const userModel = createSlice({
 			})
 			.addCase(loginAsync.rejected, (state) => {
 				state.isLoading = false;
-				state.errorMessage = "Error with login";
 			})
 			.addCase(loginAsync.fulfilled, (state, { payload }) => {
 				const { accessToken, ...user } = payload;
 				localStorage.setItem("accessToken", accessToken);
 				state.isLoading = false;
 				state.user = user;
+			})
+
+			.addCase(logoutAsync.pending, (state) => {
+				state.isLoading = true;
+			})
+			.addCase(logoutAsync.rejected, (state) => {
+				state.isLoading = false;
+			})
+			.addCase(logoutAsync.fulfilled, (state, { payload }) => {
+				state.isAuth = false;
+				state.isLoading = false;
+				state.user = undefined;
+				localStorage.removeItem("accessToken");
+				console.log(payload);
 			});
 	},
 });

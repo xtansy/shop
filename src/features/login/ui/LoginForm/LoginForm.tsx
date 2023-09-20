@@ -11,9 +11,14 @@ import {
 import { useAppDispatch } from "shared/model";
 import { loginAsync } from "entities/user";
 
-export const LoginForm = () => {
+interface LoginFormProps {
+	onComplete?: () => void;
+}
+
+export const LoginForm: React.FC<LoginFormProps> = ({ onComplete }) => {
 	const dispatch = useAppDispatch();
 	const {
+		setError,
 		register,
 		handleSubmit,
 		formState: { errors },
@@ -21,7 +26,18 @@ export const LoginForm = () => {
 		resolver: yupResolver(loginFormSchema),
 	});
 
-	const onSubmit = (data: LoginFormSchema) => dispatch(loginAsync(data));
+	const onSubmit = (data: LoginFormSchema) => {
+		dispatch(loginAsync(data))
+			.unwrap()
+			.then(() => {
+				if (onComplete) onComplete();
+			})
+			.catch((error: { message: string }) => {
+				setError("password", {
+					message: error.message,
+				});
+			});
+	};
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className={css.form}>

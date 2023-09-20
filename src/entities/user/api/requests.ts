@@ -8,3 +8,8 @@ export const login = async (props: LoginProps) => {
 	);
 	return data.data;
 };
+
+export const logout = async () => {
+	const { data } = await api.post<Response<string>>(config.paths.user.logout);
+	return data.data;
+};
