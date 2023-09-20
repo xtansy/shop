@@ -2,11 +2,11 @@ import css from "./Catalog.module.css";
 
 import { useAppSelector } from "shared/model";
 
-import { Headphone, Product } from "entities/product";
-import { ProductInCartCounter } from "features/productCounter";
-import { cartItemsSelector } from "entities/cart";
+import { type Headphone, Product } from "entities/product";
 import { isAuthSelector } from "entities/user";
+import { productInCartSelector } from "entities/cart";
 
+import { ProductInCartCounter } from "features/productCounter";
 import { AddToCartButton } from "features/addToCart";
 
 interface CatalogProps {
@@ -14,19 +14,24 @@ interface CatalogProps {
 	items: Headphone[];
 }
 
+interface BottomSlotProps {
+	currentProduct: Headphone;
+}
+
+export const BottomSlot: React.FC<BottomSlotProps> = ({ currentProduct }) => {
+	const existItem = useAppSelector((state) =>
+		productInCartSelector(state, currentProduct._id)
+	);
+
+	return existItem ? (
+		<ProductInCartCounter product={existItem} />
+	) : (
+		<AddToCartButton item={currentProduct} />
+	);
+};
+
 export const Catalog: React.FC<CatalogProps> = ({ title, items }) => {
 	const isAuth = useAppSelector(isAuthSelector);
-	const cartItems = useAppSelector(cartItemsSelector);
-
-	const createBottomSlot = (currentProduct: Headphone) => {
-		const existItem = cartItems.find(
-			(item) => item._id === currentProduct._id
-		);
-		if (existItem) {
-			return <ProductInCartCounter product={existItem} />;
-		}
-		return <AddToCartButton item={currentProduct} />;
-	};
 
 	return (
 		<div className={css.catalog}>
@@ -36,7 +41,11 @@ export const Catalog: React.FC<CatalogProps> = ({ title, items }) => {
 					<Product
 						key={item._id}
 						item={item}
-						bottomSlot={isAuth ? createBottomSlot(item) : undefined}
+						bottomSlot={
+							isAuth ? (
+								<BottomSlot currentProduct={item} />
+							) : undefined
+						}
 					/>
 				))}
 			</div>
