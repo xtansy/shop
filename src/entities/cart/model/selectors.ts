@@ -1,6 +1,6 @@
 import { createSelector } from "@reduxjs/toolkit";
 import { type CartItem } from "..";
-import { type Headphone } from "entities/product";
+import { type Headphone } from "entities/product/@x/cart";
 
 export const cartItemsSelector = (state: RootState) => state.cart.items;
 

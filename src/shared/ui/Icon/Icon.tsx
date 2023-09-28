@@ -1,6 +1,6 @@
 import css from "./Icon.module.css";
 
-export type IconType = "like" | "cart" | "star" | "trash";
+export type IconType = "like" | "cart" | "star" | "trash" | "fill-like";
 
 interface IconProps {
 	type: IconType;

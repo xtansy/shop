@@ -8,6 +8,7 @@ import { productInCartSelector } from "entities/cart";
 
 import { ProductInCartCounter } from "features/productCounter";
 import { AddToCartButton } from "features/addToCart";
+import { AddToFavIcon } from "features/addToFav";
 
 interface CatalogProps {
 	title: string;
@@ -41,10 +42,9 @@ export const Catalog: React.FC<CatalogProps> = ({ title, items }) => {
 					<Product
 						key={item._id}
 						item={item}
+						headerSlot={isAuth && <AddToFavIcon item={item} />}
 						bottomSlot={
-							isAuth ? (
-								<BottomSlot currentProduct={item} />
-							) : undefined
+							isAuth && <BottomSlot currentProduct={item} />
 						}
 					/>
 				))}
