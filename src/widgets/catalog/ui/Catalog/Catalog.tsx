@@ -1,8 +1,9 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 import css from "./Catalog.module.css";
 
 import { useAppSelector } from "shared/model";
 
-import { type Headphone, Product } from "entities/product";
+import { type Headphone, ProductList } from "entities/product";
 import { isAuthSelector } from "entities/user";
 import { productInCartSelector } from "entities/cart";
 
@@ -37,7 +38,24 @@ export const Catalog: React.FC<CatalogProps> = ({ title, items }) => {
 	return (
 		<div className={css.catalog}>
 			<h2 className={css.title}>{title}</h2>
-			<div className={css.content}>
+			<ProductList
+				items={items}
+				renderProductBottomSlot={
+					isAuth
+						? (item: Headphone) => {
+								return <BottomSlot currentProduct={item} />;
+						  }
+						: undefined
+				}
+				renderProductHeaderSlot={
+					isAuth
+						? (item: Headphone) => {
+								return <AddToFavIcon item={item} />;
+						  }
+						: undefined
+				}
+			/>
+			{/* <div className={css.content}>
 				{items.map((item) => (
 					<Product
 						key={item._id}
@@ -48,7 +66,7 @@ export const Catalog: React.FC<CatalogProps> = ({ title, items }) => {
 						}
 					/>
 				))}
-			</div>
+			</div> */}
 		</div>
 	);
 };

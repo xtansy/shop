@@ -5,14 +5,14 @@ import { Card } from "../Card/Card";
 
 interface CardListProps<T extends Headphone> {
 	items: T[];
-	headphoneActionsSlot?: (id: T["_id"]) => React.ReactNode;
-	headphoneBottomSlot?: (product: T) => React.ReactNode;
+	renderCardActionsSlot?: (id: T["_id"]) => React.ReactNode;
+	renderCardBottomSlot?: (product: T) => React.ReactNode;
 }
 
 export const CardList = <T extends Headphone>({
 	items,
-	headphoneActionsSlot,
-	headphoneBottomSlot,
+	renderCardActionsSlot,
+	renderCardBottomSlot,
 }: CardListProps<T>) => {
 	return (
 		<div className={css.list}>
@@ -22,14 +22,12 @@ export const CardList = <T extends Headphone>({
 						key={headphone._id}
 						item={headphone}
 						actionSlot={
-							headphoneActionsSlot
-								? headphoneActionsSlot(headphone._id)
-								: undefined
+							renderCardActionsSlot &&
+							renderCardActionsSlot(headphone._id)
 						}
 						bottomSlot={
-							headphoneBottomSlot
-								? headphoneBottomSlot(headphone)
-								: undefined
+							renderCardBottomSlot &&
+							renderCardBottomSlot(headphone)
 						}
 					/>
 				);

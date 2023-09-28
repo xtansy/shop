@@ -22,7 +22,7 @@ const Guard = ({ children, isLoginPage }: GuardProps) => {
 	const isAuthorized = useAppSelector(isAuthSelector);
 
 	if (isLoginPage && isAuthorized) {
-		return <Navigate to="/" />;
+		return <Navigate to="/main" />;
 	}
 
 	if (!isLoginPage && !isAuthorized) {
@@ -52,6 +52,14 @@ export const Routing = () => {
 						</Guard>
 					}
 				/>
+				{/* <Route
+					path="/favorites"
+					element={
+						<Guard>
+							<FavoritesPage />
+						</Guard>
+					}
+				/> */}
 				<Route
 					path="/login"
 					element={

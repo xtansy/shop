@@ -11,10 +11,10 @@ export const CartItemsList: React.FC<ItemsListProps> = ({ items }) => {
 	return (
 		<CardList<CartItem>
 			items={items}
-			headphoneBottomSlot={(product: CartItem) => {
+			renderCardBottomSlot={(product: CartItem) => {
 				return <ProductInCartCounter product={product} withSummary />;
 			}}
-			headphoneActionsSlot={(id) => {
+			renderCardActionsSlot={(id) => {
 				return <RemoveFromCartIcon id={id} />;
 			}}
 		/>
