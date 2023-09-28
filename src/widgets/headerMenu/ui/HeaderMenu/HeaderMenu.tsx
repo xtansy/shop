@@ -23,7 +23,7 @@ export const HeaderMenu = () => {
 		<div className={css.card}>
 			<h2>Hey, {user?.login}</h2>
 			<LogoutButton />
-			<Link to="/main">
+			<Link to="/favorites">
 				<Icon type="like" />
 			</Link>
 			<Link to="/cart">

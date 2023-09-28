@@ -1,3 +1,5 @@
+import css from "./ProductList.module.css";
+
 import { type Headphone } from "entities/product";
 
 import { Product } from "entities/product";
@@ -20,7 +22,7 @@ export const ProductList: React.FC<ProductListProps> = ({
 	 * to render-prop to avoid entity cross-import
 	 */
 	return (
-		<div>
+		<div className={css.list}>
 			{items.map((item) => {
 				return (
 					<Product

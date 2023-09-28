@@ -6,6 +6,7 @@ import { useAppSelector } from "shared/model";
 import { MainPage } from "pages/main";
 import { CartPage } from "pages/cart";
 import { LoginPage } from "pages/login";
+import { FavoritesPage } from "pages/favorites";
 
 import { isAuthSelector } from "entities/user";
 
@@ -52,14 +53,14 @@ export const Routing = () => {
 						</Guard>
 					}
 				/>
-				{/* <Route
+				<Route
 					path="/favorites"
 					element={
 						<Guard>
 							<FavoritesPage />
 						</Guard>
 					}
-				/> */}
+				/>
 				<Route
 					path="/login"
 					element={

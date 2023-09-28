@@ -55,18 +55,6 @@ export const Catalog: React.FC<CatalogProps> = ({ title, items }) => {
 						: undefined
 				}
 			/>
-			{/* <div className={css.content}>
-				{items.map((item) => (
-					<Product
-						key={item._id}
-						item={item}
-						headerSlot={isAuth && <AddToFavIcon item={item} />}
-						bottomSlot={
-							isAuth && <BottomSlot currentProduct={item} />
-						}
-					/>
-				))}
-			</div> */}
 		</div>
 	);
 };
